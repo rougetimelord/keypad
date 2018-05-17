@@ -6,47 +6,32 @@ import sys, os, glob
 ############################################
 # Heavily inpired by Carlos Lanenga
 
-def main():
-    count = 0
-    dir =''
-    if len(sys.argv) == 2:
-        dir = sys.argv[1]
-    else:
-        print("You could use sys.argv, but heres a normal input")
-        dir = input()
-    
-    if not os.path.isdir(dir):
-        print("you fucked up")
-        sys.exit(2)
-
+def main(dir):
     os.chdir(dir)
     mp3s = []
-    files_types = ("*.mp3", "*.MP3", "*.Mp3", "*.mP3")
-    for mp3_file in files_types:
-        mp3s.extend(glob.glob(mp3_file))
+    mp3s.extend(glob.glob("*.mp3"))
     if not mp3s:
         print('try getting some music')
-        sys.exit(1)
+        return 1
     
     for file in mp3s:
-        count += 1
-        print(file+" #"+str(count))
+        print(file)
 
         try:
             tag = ID3(file)
         except:
-            print(' no tag \n')
+            print('!-no tag \n')
             continue
 
         if tag == {}:
-            print(' empty tag \n')
+            print('!-empty tag \n')
             continue
 
         try:
             key = tag["TKEY"].text[0]
-            print(" currently "+key)
+            print("--currently "+key)
         except:
-            print(' no key \n')
+            print('!-no key \n')
             continue
 
         key_number = key[:-1]
@@ -55,17 +40,34 @@ def main():
         try:
             num = int(key_number)
         except ValueError:
-            print("key number isn't a number :O \n")
+            print("!-key number isn't a number :O \n")
             continue
         
         if num < 10 and len(key_number) < 2:
             new_key = "0"+key_number+key_letter
-            print(' new value is: '+new_key)
+            print('--new value is: '+new_key)
             tag.add(TKEY(encoding=3, text=new_key))
             tag.save()
         
         else:
             continue
+    return 0
  
 if __name__ == "__main__":
-    main()
+    dirs = []
+    if len(sys.argv) >= 2:
+        for i in range(1, len(sys.argv)):
+            dirs.append(sys.argv[i])
+    else:
+        print("You could use sys.argv, but heres a normal input, use commas as delimiters (no space before or after)")
+        inp = input().split(",")
+        dirs.extend(inp)
+    
+    for dir in dirs:
+        if not os.path.isdir(dir):
+            print("you fucked up")
+            sys.exit(2)
+        else:
+            retValue = main(dir)
+            if not retValue == 0:
+                sys.exit(retValue)
