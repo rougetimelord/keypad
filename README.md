@@ -1,7 +1,7 @@
 # Key Pad
 
 ~~Pioneer is always right.~~
-This tool adds a leading zero to your MiK key tags, so that the sorting on XDJs/CDJs git actually makes sense.
+This tool adds a leading zero to your MiK key tags, so that the sorting on XDJs/CDJs actually makes sense.
 
 
 ### How do I use this?!
