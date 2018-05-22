@@ -58,7 +58,7 @@ def climb(dir):
     for root, sub, files in os.walk(dir):
             if len(files) != 0:
                 res.append(root)
-    print("One more dir done")
+                print('*',end='')
     return res
 
 def main():
@@ -82,7 +82,7 @@ def main():
             subs = climb(dir)
         dirs.extend(subs)
 
-    print('-'*22 ,'\n')
+    print('\n','-'*22 ,'\n')
     
     for dir in dirs:
         if not os.path.isdir(dir):
