@@ -6,7 +6,7 @@ import sys, os, glob
 ############################################
 # Heavily inpired by Carlos Lanenga
 
-def main(dir):
+def key_chng(dir):
     os.chdir(dir)
     mp3s = []
     mp3s.extend(glob.glob("*.mp3"))
@@ -60,13 +60,15 @@ def climb(dir):
                 res.append(root)
     print("One more dir done")
     return res
- 
-if __name__ == "__main__":
+
+def main():
+    print('', '#### Keypad.py ####','     by _rouge     ', 'fixing tags since 2018', '-'*22, '', sep='\n')
     dirs = []
     walk = False
     if len(sys.argv) >= 2:
         for i in range(1, len(sys.argv)):
             if sys.argv[i] == '-W' or sys.argv[i] == "--walk":
+                print("Walking mode enabled")
                 walk = True
             else:
                 dirs.append(sys.argv[i])
@@ -76,22 +78,23 @@ if __name__ == "__main__":
         dirs.extend(inp)
 
     if walk:
-        print("Walking mode enabled see ya in a bit")
         for dir in dirs:
             subs = climb(dir)
         dirs.extend(subs)
-        print(dirs)
+
+    print('-'*22 ,'\n')
     
     for dir in dirs:
-        print(dir)
         if not os.path.isdir(dir):
             print("you fucked up")
             sys.exit(2)
         else:
-            retValue = main(dir)
+            retValue = key_chng(dir)
             if not retValue == 0:
                 if retValue == 1:
-                    print('oops')
                     continue
                 else:
                     sys.exit(retValue)
+ 
+if __name__ == "__main__":
+    main()
