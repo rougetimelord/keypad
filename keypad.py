@@ -1,16 +1,18 @@
 import mutagen
 import sys, os, glob, re
 keyRe = re.compile('(?<![0-9])[1-9][a-bA-B]')
-# KeyPad py3.6, adds leading 0s to key tags
-# By _rouge
+
+# KeyPad py3.x, adds leading 0s to key tags
+# By Blair "_rouge" LaCroix
+# Built in python 3.6, support not included
 ############################################
 # Heavily inpired by Carlos Lanenga
 
 def key_chng(dir, comm, lang):
     os.chdir(dir)
     files = []
-    files.extend(glob.glob('*.mp3'))
-    files.extend(glob.glob('*.aiff'))
+    for type in ['mp3','aiff']:
+        files.extend(glob.glob('*.'+type))
     if not files:
         return 1
     
