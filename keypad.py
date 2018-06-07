@@ -44,7 +44,7 @@ def key_chng(dir, comm, lang):
                 if comm == 'x':
                     print('\n')
                     continue
-            except Exception as e:
+            except:
                 print('!-no comment')
                 if comm == 'x':
                     print('\n')
