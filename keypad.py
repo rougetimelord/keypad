@@ -1,6 +1,6 @@
 import mutagen
 import sys, os, glob, re
-keyRe = re.compile('(?<![0-9])[1-9][a-bA-B]')
+keyRe = re.compile('(?<![A-z0-9])[1-9][a-bA-B](?![A-z])')
 
 # KeyPad py3.x, adds leading 0s to key tags
 # By Blair "_rouge" LaCroix
