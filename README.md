@@ -15,4 +15,4 @@ Options:
 - `--walk/-W` enables walking mode, walks through all sub directories of supplied paths
 - `--comment/-C` enables comment mode, the script will zero pad keys that are stored in the comment field
 - `-XC` enables exclusive comment mode, only comment fields will be processed
-- `-l={LANGUAGE CODE}` will change what comment language will be checked, default is 'eng' for English
+- `-l={LANGUAGE CODE}` will change what comment language will be checked, default is 'eng' for English. [Here's a list of ISO 639.2 language codes](https://www.loc.gov/standards/iso639-2/php/code_list.php "ISO 639.2 reference")
