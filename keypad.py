@@ -84,7 +84,7 @@ def climb(dir):
     res = []
     print('Walk progress: \n')
     for root, sub, files in os.walk(dir):
-            if len(files) != 0:
+            if not len(files) == 0:
                 res.append(root)
                 print('*',end='')
     return res
