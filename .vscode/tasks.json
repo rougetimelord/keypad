@@ -19,6 +19,12 @@
             "windows": {
                 "command": "cp ./dist/keypad.exe ./"
             },
+            "linux": {
+                "command": "cp -r -p ./dist/ ./"
+            },
+            "osx":{
+                "command": "cp -r -p ./dist/keypad.app ./"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true

@@ -11,6 +11,8 @@ This tool adds a leading zero to your MiK key tags, so that the sorting on XDJs/
     - Multiple paths are allowed, just use double quotes if the path has a space in it
 - on windows you can optionally run: `./keypad {OPTIONS} {PATH}....` instead
     - Considerably faster than running the python version
+    - On Linux/OSX you can build your own executable with `pyinstaller --onefile keypad.py` or use VScode tasks
+        - If you build an executable it would be cool if you submitted a PR with it
 
 Options:
 
