@@ -9,6 +9,8 @@ This tool adds a leading zero to your MiK key tags, so that the sorting on XDJs/
 - run: `pip install mutagen` or `sudo apt-get install python-mutagen python3-mutagen`
 - run: `python keypad.py {OPTIONS} {PATH}....` or don't use sys.argv whatever
     - Multiple paths are allowed, just use double quotes if the path has a space in it
+- on windows you can optionally run: `./keypad {OPTIONS} {PATH}....` instead
+    - Considerably faster than running the python version
 
 Options:
 
