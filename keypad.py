@@ -90,26 +90,30 @@ def climb(dir):
     return res
 
 def main():
-    print('', '#### Keypad.py ####','     by _rouge     ', 'fixing tags since 2018', '-'*22, '', sep='\n')
+    print('', '#### Keypad.py ####','     by _rouge     ', 'fixing tags since 2018', '-'*22, sep='\n')
     dirs = []
     walk = False
     comm = '0'
     lang = 'eng'
     if len(sys.argv) >= 2:
-        for i in range(1, len(sys.argv)):
-            if sys.argv[i].lower() == '-w' or sys.argv[i].lower() == '--walk':
+        for i in sys.argv:
+            if i.lower() == '-w' or i.lower() == '--walk':
                 print('Walking mode enabled')
                 walk = True
-            elif sys.argv[i].lower() == '-c' or sys.argv[i].lower() == '--comment':
+            elif i.lower() == '-c' or i.lower() == '--comment':
                 print('Comment mode enabled')
                 comm = '1'
-            elif sys.argv[i].lower() == '-xc':
+            elif i.lower() == '-xc':
                 print('Exclusive comment mode enabled')
                 comm = 'x'
-            elif sys.argv[i].lower()[0:3] == '-l=' and len(sys.argv[i]) == 6:
-                lang = sys.argv[i].lower()[-3:]
-            else:
-                dirs.append(sys.argv[i])
+            elif i.lower()[0:3] == '-l=' and len(i) == 6:
+                lang = i.lower()[-3:]
+            elif i.lower() == '-h' or i.lower == '--h':
+                print('keypad.py is a tool to zero pad MiK results','use -w or --walk to go through all sub folders','use -c or --comment to fix tags that are stored in comments',
+                    'use -xc to only fix comments','use -l=[ISO-639.2 Code] if your comment isn\'t in english','remember to put quotes arround paths that have spaces in them',sep='\n')
+                sys.exit(0)
+            elif not i == sys.argv[0]:
+                dirs.append(i)
     else:
         print("You could use sys.argv","heres a normal input, use commas as delimiters (space after)","but you don't get to use cool extras",sep="\n")
         inp = input().split(", ")
@@ -125,7 +129,7 @@ def main():
     for name in dirs:
         if not os.path.isdir(name):
             print("That's not a directory")
-            sys.exit(2)
+            sys.exit(1)
         else:
             retValue = key_chng(name, comm, lang)
             if not retValue == 0:
