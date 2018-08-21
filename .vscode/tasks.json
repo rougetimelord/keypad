@@ -23,7 +23,7 @@
                 "command": "cp -r -p ./dist/ ./"
             },
             "osx":{
-                "command": "cp -r -p ./dist/keypad.app ./"
+                "command": "cp -p ./dist/keypad.app ./"
             },
             "group": {
                 "kind": "build",
