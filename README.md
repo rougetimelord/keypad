@@ -6,13 +6,13 @@ This tool adds a leading zero to your MiK key tags, so that the sorting on XDJs/
 
 ### How do I use this?!
 - use python **3.4+**
-- run: `pip install mutagen` or `sudo apt-get install python-mutagen python3-mutagen`
+- run: `pip install -r requirements.txt`
 - run: `python keypad.py {OPTIONS} {PATH}....` or don't use sys.argv whatever
     - Multiple paths are allowed, just use double quotes if the path has a space in it
 - on windows you can optionally run: `./keypad {OPTIONS} {PATH}....` instead
     - Considerably faster than running the python version
     - On Linux/OSX you can build your own executable with `pyinstaller --onefile keypad.py` or use VScode tasks
-        - If you build an executable it would be cool if you submitted a PR with it
+        - If you build an executable it would be cool if you submitted a PR with it, only builds in python 3.6 (pending updates to [PyInstaller](https://github.com/pyinstaller/pyinstaller))
 
 Options:
 

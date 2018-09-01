@@ -6,7 +6,7 @@
         {
             "label": "Build excutable",
             "type": "shell",
-            "command": "pyinstaller --onefile keypad.py",
+            "command": "py -3.6 -m PyInstaller --onefile keypad.py",
             "group": {
                 "kind": "build",
                 "isDefault": true
