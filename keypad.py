@@ -60,20 +60,11 @@ def key_chng(dir, comm, lang):
             print('!-no key \n')
             continue
 
-        key_number = key[:-1]
-        key_letter = key[-1:]
-
-        try:
-            num = int(key_number)
-        except ValueError:
-            print("!-key number isn't a number :O \n")
-            continue
-        
-        if num < 10 and len(key_number) < 2:
-            new_key = "0"+key_number+key_letter
+        key_match = keyRe.search(key)
+        if key_match:
+            new_key = 0 + key_match[0].upper()
             print('--new value is:',new_key,'\n')
             tag['TKEY'].text[0] = new_key
-            tag.save()
         
         else:
             print('--no change in tag \n')
@@ -116,7 +107,10 @@ def main():
                 dirs.append(i)
     else:
         print("You could use sys.argv","heres a normal input, use commas as delimiters (space after)","but you don't get to use cool extras",sep="\n")
-        inp = input().split(", ")
+        try:
+            inp = input().split(", ")
+        except KeyboardInterrupt:
+            sys.exit(1)
         dirs.extend(inp)
 
     if walk:
