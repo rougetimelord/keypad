@@ -7,7 +7,7 @@
             "label": "Build excutable",
             "type": "shell",
             "windows": {
-                "command": "py -3.6 -m PyInstaller --onefile keypad.py"
+                "command": "py -3.6 -m PyInstaller --onefile keypad.py;rm ./keypad.exe;cp ./dist/keypad.exe ./;gpg -s ./keypad.exe"
             },
             "group": {
                 "kind": "build",

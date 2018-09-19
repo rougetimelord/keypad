@@ -20,3 +20,5 @@ Options:
 - `--comment/-C` enables comment mode, the script will zero pad keys that are stored in the comment field
 - `-XC` enables exclusive comment mode, only comment fields will be processed
 - `-l={LANGUAGE CODE}` will change what comment language will be checked, default is 'eng' for English. [Here's a list of ISO 639.2 language codes](https://www.loc.gov/standards/iso639-2/php/code_list.php "ISO 639.2 reference")
+
+Binary signed with the key listed on my [keybase](https://keybase.io/r0uge) with the fingerprint of `F9FE 1C8E D139 E706 F2DC C318 F8B0 FBCA 606A DF14`
