@@ -62,7 +62,7 @@ def key_chng(dir, comm, lang):
 
         key_match = keyRe.search(key)
         if key_match:
-            new_key = 0 + key_match[0].upper()
+            new_key = "0" + key_match[0].upper()
             print('--new value is:',new_key,'\n')
             tag['TKEY'].text[0] = new_key
         
