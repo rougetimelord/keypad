@@ -9,13 +9,31 @@ keyRe = re.compile('(?<![A-z0-9])[1-9][a-bA-B](?![A-z])')
 # Heavily inpired by Carlos Lanenga
 
 def key_chng(dir, comm, lang):
+    """Changes all the keys of files in a directory.
+    
+    First it globs all audio files in the usual formats (check the types list)
+    into one giant list then it runs the key and/or comment fields through a
+    regex (check keyRe) and replaces them with the fixed key.
+    
+    Arguments:
+        dir {str} -- Path of the folder to change.
+        comm {str} -- Either 0, 1 or x, determines whether the files' comments
+                    are checked.
+        lang {str} -- The ISO639.2 language code for comments.
+    
+    Returns:
+        int -- 0 for success, 1 for failure
+    """
+
     os.chdir(dir)
     files = []
-    for type in ['mp3','aiff']:
+    types = ['mp3','aiff', 'mp4', 'ogg', 'm4a', 'flac']
+    for type in types:
         files.extend(glob.glob('*.'+type))
     if not files:
         return 1
     
+    #Searches all the files for key/comment tags
     for file in files:
         print(file)
 
@@ -29,6 +47,7 @@ def key_chng(dir, comm, lang):
             print('!-empty tag \n')
             continue
 
+        #This cod handles searching comments, if xc is on then it skips the key
         if comm == '1' or comm == 'x':
             try:
                 frame = 'COMM::' + lang
@@ -52,7 +71,7 @@ def key_chng(dir, comm, lang):
                     print('\n')
                     continue
 
-        
+        #This block handles the key field
         try:
             key = tag['TKEY'].text[0]
             print('--currently',key)
@@ -62,7 +81,7 @@ def key_chng(dir, comm, lang):
 
         key_match = keyRe.search(key)
         if key_match:
-            new_key = "0" + key_match[0].upper()
+            new_key = '0' + key_match[0].upper()
             print('--new value is:',new_key,'\n')
             tag['TKEY'].text[0] = new_key
         
@@ -72,6 +91,16 @@ def key_chng(dir, comm, lang):
     return 0
 
 def climb(dir):
+    """Gets all sub directories of the inputted directory. Only gets called
+    with the -w option enabled.
+    
+    Arguments:
+        dir {str} -- The root directory.
+    
+    Returns:
+        [list] -- All sub directories of the root.
+    """
+
     res = []
     print('Walk progress: \n')
     for root, sub, files in os.walk(dir):
@@ -81,6 +110,9 @@ def climb(dir):
     return res
 
 def main():
+    """Runs everything else
+    """
+
     print('', '#### Keypad.py ####','     by _rouge     ', 'fixing tags since 2018', '-'*22, sep='\n')
     dirs = []
     walk = False
@@ -106,9 +138,9 @@ def main():
             elif not i == sys.argv[0]:
                 dirs.append(i)
     else:
-        print("You could use sys.argv","heres a normal input, use commas as delimiters (space after)","but you don't get to use cool extras",sep="\n")
+        print('You could use sys.argv','heres a normal input, use commas as delimiters (space after)',"but you don't get to use cool extras",sep='\n')
         try:
-            inp = input().split(", ")
+            inp = input().split(', ')
         except KeyboardInterrupt:
             sys.exit(1)
         dirs.extend(inp)
@@ -132,5 +164,5 @@ def main():
                 else:
                     sys.exit(retValue)
  
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
