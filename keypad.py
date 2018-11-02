@@ -4,7 +4,8 @@ keyRe = re.compile('(?<![A-z0-9])[1-9][a-bA-B](?![A-z])')
 
 # KeyPad py3.x, adds leading 0s to key tags
 # By Blair "_rouge" LaCroix
-# Built in python 3.6, support not included
+# Built in python 3.7.0, support not included
+# Tested on py3.6.7 and py3.7.0 x64
 ############################################
 # Heavily inpired by Carlos Lanenga
 
