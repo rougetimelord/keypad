@@ -9,33 +9,15 @@
             "windows": {
                 "command": "py -3.6 -m PyInstaller --onefile keypad.py;rm ./keypad.exe;cp ./dist/keypad.exe ./;gpg -s ./keypad.exe"
             },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Move",
-            "type": "shell",
-            "windows": {
-                "command": "cp ./dist/keypad.exe ./"
-            },
             "linux": {
-                "command": "cp -r -p ./dist/ ./"
+                "command": "py -3.6 -m PyInstaller --onefile keypad.py;cp -r -p ./dist/ ./"
             },
-            "osx":{
-                "command": "cp -p ./dist/keypad.app ./"
+            "osx": {
+                "command": "py -3.6 -m PyInstaller --onefile keypad.py;cp -p ./dist/keypad.app ./"
             },
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared"
             },
             "problemMatcher": []
         }
