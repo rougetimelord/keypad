@@ -7,9 +7,9 @@ keyRe = re.compile('(?<![A-z0-9])[1-9][a-bA-B](?![A-z])')
 # Built in python 3.7.0, support not included
 # Tested on py3.6.7 and py3.7.0 x64
 ############################################
-# Heavily inpired by Carlos Lanenga
+# Heavily inspired by Carlos Lanenga
 
-def key_chng(dir, comm, lang):
+def keyChange(dir, comm, lang):
     """Changes all the keys of files in a directory.
     
     First it globs all audio files in the usual formats (check the types list)
@@ -48,7 +48,7 @@ def key_chng(dir, comm, lang):
             print('!-empty tag \n')
             continue
 
-        #This cod handles searching comments, if xc is on then it skips the key
+        #This code handles searching comments, if xc is on then it skips the key
         if comm == '1' or comm == 'x':
             try:
                 frame = 'COMM::' + lang
@@ -134,7 +134,7 @@ def main():
                 lang = i.lower()[-3:]
             elif i.lower() == '-h' or i.lower == '--h':
                 print('keypad.py is a tool to zero pad MiK results','use -w or --walk to go through all sub folders','use -c or --comment to fix tags that are stored in comments',
-                    'use -xc to only fix comments','use -l=[ISO-639.2 Code] if your comment isn\'t in english','remember to put quotes arround paths that have spaces in them',sep='\n')
+                    'use -xc to only fix comments','use -l=[ISO-639.2 Code] if your comment isn\'t in english','remember to put quotes around paths that have spaces in them',sep='\n')
                 sys.exit(0)
             elif not i == sys.argv[0]:
                 dirs.append(i)
@@ -158,7 +158,7 @@ def main():
             print("That's not a directory")
             sys.exit(1)
         else:
-            retValue = key_chng(name, comm, lang)
+            retValue = keyChange(name, comm, lang)
             if not retValue == 0:
                 if retValue == 1:
                     continue
