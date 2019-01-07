@@ -117,7 +117,7 @@ def main():
     print('', 
         '######### Keypad.py ##########',
         '   by Blair "_rouge" LaCroix', 
-        'fixing tags since 2018', 
+        '     fixing tags since 2018', 
         '-'*22, sep='\n')
     dirs = []
     walk = False
