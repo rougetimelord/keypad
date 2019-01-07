@@ -114,7 +114,10 @@ def main():
     """Runs everything else
     """
 
-    print('', '#### Keypad.py ####','     by _rouge     ', 'fixing tags since 2018', '-'*22, sep='\n')
+    print('', '#### Keypad.py ####',
+        '     by Blair "_rouge" LaCroix     ', 
+        'fixing tags since 2018', 
+        '-'*22, sep='\n')
     dirs = []
     walk = False
     comm = '0'
@@ -133,13 +136,20 @@ def main():
             elif i.lower()[0:3] == '-l=' and len(i) == 6:
                 lang = i.lower()[-3:]
             elif i.lower() == '-h' or i.lower == '--h':
-                print('keypad.py is a tool to zero pad MiK results','use -w or --walk to go through all sub folders','use -c or --comment to fix tags that are stored in comments',
-                    'use -xc to only fix comments','use -l=[ISO-639.2 Code] if your comment isn\'t in english','remember to put quotes around paths that have spaces in them',sep='\n')
+                print('keypad.py is a tool to zero pad MiK results',
+                    'use -w or --walk to go through all sub folders',
+                    'use -c or --comment to fix tags that are stored in comments',
+                    'use -xc to only fix comments',
+                    'use -l=[ISO-639.2 Code] if your comment isn\'t in english',
+                    'remember to put quotes around paths that have spaces in them',
+                    sep='\n')
                 sys.exit(0)
             elif not i == sys.argv[0]:
                 dirs.append(i)
     else:
-        print('You could use sys.argv','heres a normal input, use commas as delimiters (space after)',"but you don't get to use cool extras",sep='\n')
+        print('You could use sys.argv',
+            'heres a normal input, use commas as delimiters (space after)',
+            "but you don't get to use cool extras",sep='\n')
         try:
             inp = input().split(', ')
         except KeyboardInterrupt:
