@@ -114,8 +114,9 @@ def main():
     """Runs everything else
     """
 
-    print('', '#### Keypad.py ####',
-        '     by Blair "_rouge" LaCroix     ', 
+    print('', 
+        '######### Keypad.py ##########',
+        '   by Blair "_rouge" LaCroix', 
         'fixing tags since 2018', 
         '-'*22, sep='\n')
     dirs = []
