@@ -7,13 +7,13 @@
             "label": "Build excutable",
             "type": "shell",
             "windows": {
-                "command": "py -3.6 -m PyInstaller --onefile keypad.py;rm ./keypad.exe;cp ./dist/keypad.exe ./;gpg -s ./keypad.exe"
+                "command": "py -m PyInstaller --onefile keypad.py;rm ./keypad.exe;cp ./dist/keypad.exe ./;"
             },
             "linux": {
-                "command": "py -3.6 -m PyInstaller --onefile keypad.py;cp -r -p ./dist/ ./"
+                "command": "py -m PyInstaller --onefile keypad.py;cp -r -p ./dist/ ./"
             },
             "osx": {
-                "command": "py -3.6 -m PyInstaller --onefile keypad.py;cp -p ./dist/keypad.app ./"
+                "command": "py -m PyInstaller --onefile keypad.py;cp -p ./dist/keypad.app ./"
             },
             "group": {
                 "kind": "build",
