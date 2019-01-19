@@ -85,6 +85,7 @@ def keyChange(dir, comm, lang):
             new_key = '0' + key_match[0].upper()
             print('--new value is:',new_key,'\n')
             tag['TKEY'].text[0] = new_key
+            tag.save()
         
         else:
             print('--no change in tag \n')
