@@ -48,7 +48,8 @@ def keyChange(dir, comm, lang):
             print('!-empty tag \n')
             continue
 
-        #This code handles searching comments, if xc is on then it skips the key
+        #This code handles searching comments, if exclusive comment mode
+        #is on then it skips the key.
         if comm == '1' or comm == 'x':
             try:
                 frame = 'COMM::' + lang
@@ -63,12 +64,9 @@ def keyChange(dir, comm, lang):
                         print('--new comment is:', new_comm)
                     else:
                         print("!-comment didn't include key that needed fixing")
-                if comm == 'x':
-                    print('\n')
-                    continue
             except:
                 print('!-no comment')
-                if comm == 'x':
+            if comm == 'x':
                     print('\n')
                     continue
 
@@ -137,7 +135,7 @@ def main():
                 comm = 'x'
             elif i.lower()[0:3] == '-l=' and len(i) == 6:
                 lang = i.lower()[-3:]
-            elif i.lower() == '-h' or i.lower == '--h':
+            elif i.lower() == '-h' or i.lower() == '--h' or i.lower() == '-help':
                 print('keypad.py is a tool to zero pad MiK results',
                     'use -w or --walk to go through all sub folders',
                     'use -c or --comment to fix tags that are stored in comments',
@@ -167,7 +165,7 @@ def main():
     
     for name in dirs:
         if not os.path.isdir(name):
-            print("That's not a directory")
+            print('%s: that\'s not a directory' % name)
             sys.exit(1)
         else:
             retValue = keyChange(name, comm, lang)
