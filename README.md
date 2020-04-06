@@ -11,8 +11,7 @@ This tool adds a leading zero to your MiK key tags, so that the sorting on XDJs/
   - Multiple paths are allowed, just use double quotes if the path has a space in it
 - on windows you can optionally run: `./keypad {OPTIONS} {PATH}....` instead
   - Considerably faster than running the python version
-    - On Linux/OSX you can build your own executable with `pyinstaller --onefile keypad.py` or use VScode tasks
-      - If you build an executable it would be cool if you submitted a PR with it, only builds in python 3.6 (pending updates to [PyInstaller](https://github.com/pyinstaller/pyinstaller))
+    - On Linux/OSX you can build your own executable with `pyinstaller --onefile keypad.py` or use VScode tasks (if you build an executable please submit a a PR with it)
 
 Options:
 
@@ -21,4 +20,4 @@ Options:
 - `-XC` enables exclusive comment mode, only comment fields will be processed
 - `-l={LANGUAGE CODE}` will change what comment language will be checked, default is 'eng' for English. [Here's a list of ISO 639.2 language codes](https://www.loc.gov/standards/iso639-2/php/code_list.php "ISO 639.2 reference")
 
-Binary signed with the key listed on my [keybase](https://keybase.io/r0uge) with the fingerprint of `F9FE 1C8E D139 E706 F2DC C318 F8B0 FBCA 606A DF14`
+Binary signed with the key listed on my [keybase](https://keybase.io/r0uge) with the fingerprint of `070B 7B2A A1DE D18D 1C58 DE85 8252 FCE9 9D46 DC30`
