@@ -20,4 +20,4 @@ Options:
 - `-XC` enables exclusive comment mode, only comment fields will be processed
 - `-l={LANGUAGE CODE}` will change what comment language will be checked, default is 'eng' for English. [Here's a list of ISO 639.2 language codes](https://www.loc.gov/standards/iso639-2/php/code_list.php "ISO 639.2 reference")
 
-Binary signed with the key listed on my [keybase](https://keybase.io/r0uge) with the fingerprint of `070B 7B2A A1DE D18D 1C58 DE85 8252 FCE9 9D46 DC30`
+The hash of the binary is signed with the key listed on my [keybase](https://keybase.io/r0uge) with the fingerprint of `070B 7B2A A1DE D18D 1C58 DE85 8252 FCE9 9D46 DC30`

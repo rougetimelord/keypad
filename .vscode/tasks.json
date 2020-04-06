@@ -7,7 +7,7 @@
             "label": "Build excutable",
             "type": "shell",
             "windows": {
-                "command": "py -m PyInstaller --onefile keypad.py;rm ./keypad.exe;cp ./dist/keypad.exe ./;"
+                "command": "py -m PyInstaller --onefile keypad.py;rm ./keypad.exe;cp ./dist/keypad.exe ./; certutil -hashfile keypad.exe SHA256 | keybase sign -o keypad.hash.gpg;"
             },
             "linux": {
                 "command": "py -m PyInstaller --onefile keypad.py;cp -r -p ./dist/ ./"
