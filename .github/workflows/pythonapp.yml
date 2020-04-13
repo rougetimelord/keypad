@@ -27,4 +27,4 @@ jobs:
     - name: Lint with black
       run: |
         pip install black
-        black -l 80 -t py38
+        black . -l 80 -t py38
