@@ -1,6 +1,7 @@
 import mutagen
 import sys, os, glob, re
-keyRe = re.compile('(?<![A-z0-9])[1-9][a-bA-B](?![A-z])')
+
+keyRe = re.compile("(?<![A-z0-9])[1-9][a-bA-B](?![A-z])")
 
 # KeyPad py3.x, adds leading 0s to key tags
 # By Blair "_rouge" LaCroix
@@ -8,6 +9,7 @@ keyRe = re.compile('(?<![A-z0-9])[1-9][a-bA-B](?![A-z])')
 # Tested on py3.6.7 and py3.7.0 x64
 ############################################
 # Heavily inspired by Carlos Lanenga
+
 
 def keyChange(dir, comm, lang):
     """Changes all the keys of files in a directory.
@@ -28,67 +30,73 @@ def keyChange(dir, comm, lang):
 
     os.chdir(dir)
     files = []
-    types = ['mp3','aiff', 'mp4', 'ogg', 'm4a', 'flac']
+    types = ["mp3", "aiff", "mp4", "ogg", "m4a", "flac"]
     for type in types:
-        files.extend(glob.glob('*.'+type))
+        files.extend(glob.glob("*." + type))
     if not files:
         return 1
-    
-    #Searches all the files for key/comment tags
+
+    # Searches all the files for key/comment tags
     for file in files:
         print(file)
 
         try:
             tag = mutagen.File(file)
         except:
-            print('!-no tag \n')
+            print("!-no tag \n")
             continue
 
         if tag == {}:
-            print('!-empty tag \n')
+            print("!-empty tag \n")
             continue
 
-        #This code handles searching comments, if exclusive comment mode
-        #is on then it skips the key.
-        if comm == '1' or comm == 'x':
+        # This code handles searching comments, if exclusive comment mode
+        # is on then it skips the key.
+        if comm == "1" or comm == "x":
             try:
-                frame = 'COMM::' + lang
+                frame = "COMM::" + lang
                 comment = tag[frame]
                 for i in range(len(comment.text)):
                     text = comment.text[i]
                     match = keyRe.search(text)
                     if match:
-                        new_comm = text[0:match.start()] + '0' + match[0].upper() + text[match.end():]
+                        new_comm = (
+                            text[0 : match.start()]
+                            + "0"
+                            + match[0].upper()
+                            + text[match.end() :]
+                        )
                         tag[frame].text[i] = new_comm
                         tag.save()
-                        print('--new comment is:', new_comm)
+                        print("--new comment is:", new_comm)
                     else:
                         print("!-comment didn't include key that needed fixing")
             except:
-                print('!-no comment')
-            if comm == 'x':
-                    print('\n')
-                    continue
+                print("!-no comment")
+            if comm == "x":
+                print("\n")
+                continue
 
-        #This block handles the key field
+        # This block handles the key field
         try:
-            key = tag['TKEY'].text[0]
-            print('--currently',key)
+            key = tag["TKEY"].text[0]
+            print("--currently", key)
         except:
-            print('!-no key \n')
+            print("!-no key \n")
             continue
 
         key_match = keyRe.search(key)
         if key_match:
-            new_key = '0' + key_match[0].upper()
-            print('--new value is:',new_key,'\n')
-            tag['TKEY'].text[0] = new_key
+            new_key = "0" + key_match[0].upper()
+            print("--new value is:", new_key, "\n")
+            tag["TKEY"].text[0] = new_key
             tag.save()
-        
+
         else:
-            print('--no change in tag \n')
+            print("--no change in tag \n")
             continue
     return 0
+
 
 def climb(dir):
     """Gets all sub directories of the inputted directory. Only gets called
@@ -102,56 +110,67 @@ def climb(dir):
     """
 
     res = []
-    print('Walk progress: \n')
+    print("Walk progress: \n")
     for root, sub, files in os.walk(dir):
-            if not len(files) == 0:
-                res.append(root)
-                print('*',end='')
+        if not len(files) == 0:
+            res.append(root)
+            print("*", end="")
     return res
+
 
 def main():
     """Runs everything else
     """
 
-    print('', 
-        '######### Keypad.py ##########',
-        '   by Blair "_rouge" LaCroix', 
-        '     fixing tags since 2018', 
-        '-'*22, sep='\n')
+    print(
+        "",
+        "######### Keypad.py ##########",
+        '   by Blair "_rouge" LaCroix',
+        "     fixing tags since 2018",
+        "-" * 22,
+        sep="\n",
+    )
     dirs = []
     walk = False
-    comm = '0'
-    lang = 'eng'
+    comm = "0"
+    lang = "eng"
     if len(sys.argv) >= 2:
         for i in sys.argv:
-            if i.lower() == '-w' or i.lower() == '--walk':
-                print('Walking mode enabled')
+            if i.lower() == "-w" or i.lower() == "--walk":
+                print("Walking mode enabled")
                 walk = True
-            elif i.lower() == '-c' or i.lower() == '--comment':
-                print('Comment mode enabled')
-                comm = '1'
-            elif i.lower() == '-xc':
-                print('Exclusive comment mode enabled')
-                comm = 'x'
-            elif i.lower()[0:3] == '-l=' and len(i) == 6:
+            elif i.lower() == "-c" or i.lower() == "--comment":
+                print("Comment mode enabled")
+                comm = "1"
+            elif i.lower() == "-xc":
+                print("Exclusive comment mode enabled")
+                comm = "x"
+            elif i.lower()[0:3] == "-l=" and len(i) == 6:
                 lang = i.lower()[-3:]
-            elif i.lower() == '-h' or i.lower() == '--h' or i.lower() == '-help':
-                print('keypad.py is a tool to zero pad MiK results',
-                    'use -w or --walk to go through all sub folders',
-                    'use -c or --comment to fix tags that are stored in comments',
-                    'use -xc to only fix comments',
-                    'use -l=[ISO-639.2 Code] if your comment isn\'t in english',
-                    'remember to put quotes around paths that have spaces in them',
-                    sep='\n')
+            elif (
+                i.lower() == "-h" or i.lower() == "--h" or i.lower() == "-help"
+            ):
+                print(
+                    "keypad.py is a tool to zero pad MiK results",
+                    "use -w or --walk to go through all sub folders",
+                    "use -c or --comment to fix tags that are stored in comments",
+                    "use -xc to only fix comments",
+                    "use -l=[ISO-639.2 Code] if your comment isn't in english",
+                    "remember to put quotes around paths that have spaces in them",
+                    sep="\n",
+                )
                 sys.exit(0)
             elif not i == sys.argv[0]:
                 dirs.append(i)
     else:
-        print('You could use sys.argv',
-            'heres a normal input, use commas as delimiters (space after)',
-            "but you don't get to use cool extras",sep='\n')
+        print(
+            "You could use sys.argv",
+            "heres a normal input, use commas as delimiters (space after)",
+            "but you don't get to use cool extras",
+            sep="\n",
+        )
         try:
-            inp = input().split(', ')
+            inp = input().split(", ")
         except KeyboardInterrupt:
             sys.exit(1)
         dirs.extend(inp)
@@ -161,11 +180,11 @@ def main():
             subs = climb(name)
         dirs.extend(subs)
 
-    print('\n','-'*22 ,'\n')
-    
+    print("\n", "-" * 22, "\n")
+
     for name in dirs:
         if not os.path.isdir(name):
-            print('%s: that\'s not a directory' % name)
+            print("%s: that's not a directory" % name)
             sys.exit(1)
         else:
             retValue = keyChange(name, comm, lang)
@@ -174,6 +193,7 @@ def main():
                     continue
                 else:
                     sys.exit(retValue)
- 
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     main()
