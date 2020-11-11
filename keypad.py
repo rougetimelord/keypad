@@ -125,7 +125,7 @@ def main():
     print(
         "",
         "######### Keypad.py ##########",
-        '   by Blair "_rouge" LaCroix',
+        '   by _r0uge',
         "     fixing tags since 2018",
         "-" * 22,
         sep="\n",
