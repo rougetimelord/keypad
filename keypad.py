@@ -184,7 +184,7 @@ def main():
 
     for name in dirs:
         if not os.path.isdir(name):
-            print("%s: that's not a directory" % name)
+            print(f"{name}: that's not a directory")
             sys.exit(1)
         else:
             retValue = keyChange(name, comm, lang)
